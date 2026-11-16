@@ -1,0 +1,28 @@
+#!/bin/bash
+# Export Terraform values as shell environment variables
+# This header is prepended to user_data_body.sh by locals.tf
+
+export DATA_VOLUME_NAME='${DATA_VOLUME_NAME}'
+export EIP_ALLOC_ID='${EIP_ALLOC_ID}'
+export WG_LISTEN_PORT='${WG_LISTEN_PORT}'
+export WG_CLIENT_PUBKEY='${WG_CLIENT_PUBKEY}'
+export WG_SERVER_PRIVKEY_SSM='${WG_SERVER_PRIVKEY_SSM}'
+
+export SPOT_QUEUE_URL='${SPOT_QUEUE_URL}'
+export ASG_NAME='${ASG_NAME}'
+
+export FIREWORKS_API_KEY_SSM='${FIREWORKS_API_KEY_SSM}'
+export HERMES_DASHBOARD_PASSWORD='${HERMES_DASHBOARD_PASSWORD}'
+
+# Phase 4: MCP + gateway secrets (SSM parameter names, not values)
+export GITHUB_PAT_SSM='${GITHUB_PAT_SSM}'
+export SLACK_BOT_TOKEN_SSM='${SLACK_BOT_TOKEN_SSM}'
+export SLACK_APP_TOKEN_SSM='${SLACK_APP_TOKEN_SSM}'
+export ICLOUD_APP_PASSWORD_SSM='${ICLOUD_APP_PASSWORD_SSM}'
+export POSTMAN_API_KEY_SSM='${POSTMAN_API_KEY_SSM}'
+export PLANE_API_KEY_SSM='${PLANE_API_KEY_SSM}'
+export PLANE_PERSONAL_API_KEY_SSM='${PLANE_PERSONAL_API_KEY_SSM}'
+
+# Tailscale (reliable private access)
+export TAILSCALE_AUTH_KEY_SSM='${TAILSCALE_AUTH_KEY_SSM}'
+export TAILSCALE_HOSTNAME='${TAILSCALE_HOSTNAME}'

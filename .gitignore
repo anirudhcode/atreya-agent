@@ -1,0 +1,23 @@
+# --- secrets: never commit ---
+*.key                 
+terraform.tfvars     
+*.auto.tfvars
+
+# --- terraform state (contains resource attrs; keep private) ---
+*.tfstate
+*.tfstate.*
+.terraform/
+# NOTE: .terraform.lock.hcl is intentionally NOT ignored -- commit it to pin
+# provider versions/hashes for reproducible applies.
+
+# --- misc ---
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+push_secrets.sh
+
+.DS_Store
