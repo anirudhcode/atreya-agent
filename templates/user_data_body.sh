@@ -177,17 +177,21 @@ systemctl restart wg-quick@wg0
 curl -fsSL https://tailscale.com/install.sh | sh
 
 mkdir -p /data/tailscale
-if grep -q '^FLAGS=' /etc/default/tailscaled 2>/dev/null; then
-  sed -i 's|^FLAGS=.*|FLAGS="--statedir=/data/tailscale"|' /etc/default/tailscaled
-else
-  echo 'FLAGS="--statedir=/data/tailscale"' >> /etc/default/tailscaled
-fi
-
-# Start tailscaled only after the persistent volume is mounted.
+# Persist tailscaled state on /data. The package unit hardcodes
+# --state=/var/lib/tailscale/tailscaled.state on the ephemeral root, and sets
+# StateDirectory=tailscale (so a symlink there gets recreated). Override
+# ExecStart to use --statedir on /data instead, and start only after /data is
+# mounted — otherwise the node key lives on / and every spot replacement
+# re-registers from scratch.
 mkdir -p /etc/systemd/system/tailscaled.service.d
 cat > /etc/systemd/system/tailscaled.service.d/data.conf <<'UNIT'
 [Unit]
 RequiresMountsFor=/data
+
+[Service]
+StateDirectory=
+ExecStart=
+ExecStart=/usr/sbin/tailscaled --statedir=/data/tailscale --socket=/run/tailscale/tailscaled.sock --port=${PORT}
 UNIT
 
 systemctl daemon-reload
