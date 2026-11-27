@@ -359,6 +359,13 @@ platforms:
       - "C0AK4LBNMV4"   # #issues-frontend
       - "C0AKBFED570"   # #issues-sdk
       - "C0AKH4DBKEK"   # #appstorys-alerts
+    extra:
+      # Slash-command access control: listing an admin turns gating ON for that scope,
+      # so the team keeps only /help and /whoami while the owner keeps every command.
+      allow_admin_from:
+        - "U0915EHM5PU"
+      group_allow_admin_from:
+        - "U0915EHM5PU"
   email:
     enabled: true
 PLATCONF
