@@ -344,7 +344,7 @@ fi
 
 # ---- Slack channel gating + platform enablement (idempotent) ----
 # The bot answers only in the dev/issue channels (+ #appstorys-alerts); 1:1 DMs stay exempt.
-if ! grep -q '^  allowed_channels:' "$HERMES_HOME/config.yaml"; then
+if ! grep -q '^platforms:' "$HERMES_HOME/config.yaml"; then
   cat >> "$HERMES_HOME/config.yaml" <<'PLATCONF'
 
 platforms:
@@ -853,7 +853,7 @@ for VAR_LINE in \
   "SLACK_BOT_TOKEN=$SLACK_BOT_TOKEN" \
   "SLACK_APP_TOKEN=$SLACK_APP_TOKEN" \
   "SLACK_ALLOWED_USERS=U0915EHM5PU,U08G5VDT1FE,U0CC6BAPRB4,U0AFAH5T89J,U0CBRNRR72B,U0CBREP9H9D,U0CBRNN12LF,U0CC1R9AJ05,U0CCAQW93MJ,U0CD1FF0UD6" \
-  "SLACK_HOME_CHANNEL=C0BGKUU49MK" \
+  "SLACK_HOME_CHANNEL=D0BGSV3JSUU" \
   "SLACK_ENABLED=true"; do
   VAR_NAME="${VAR_LINE%%=*}"
   if grep -q "^${VAR_NAME}=" "$HERMES_HOME/.env"; then
