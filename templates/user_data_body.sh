@@ -381,10 +381,10 @@ SLACKCONF
 fi
 
 # ---- SOUL.md: persona/system prompt (regenerated when SOUL_VERSION bumps) ----
-if [ ! -f "$HERMES_HOME/SOUL.md" ] || ! grep -q '^# SOUL_VERSION: 8$' "$HERMES_HOME/SOUL.md" 2>/dev/null; then
+if [ ! -f "$HERMES_HOME/SOUL.md" ] || ! grep -q '^# SOUL_VERSION: 9$' "$HERMES_HOME/SOUL.md" 2>/dev/null; then
   cat > "$HERMES_HOME/SOUL.md" <<'SOUL'
 
-# SOUL_VERSION: 8
+# SOUL_VERSION: 9
 # Identity
 You are my personal and work assistant. Direct, concise, proactive.
 No emojis. No filler. State facts, ask for decisions.
@@ -398,7 +398,8 @@ No emojis. No filler. State facts, ask for decisions.
 # Slack — Appstorys workspace (the team surface)
 - Two audiences: me (full access) and the team (task scope only).
 - Me: respond when @mentioned in the channels the bot is in; DMs always work.
-- Team members — Tushar, Prem, Kabir — may use you ONLY in the #issues-* channels
+- The team = every allowlisted human in the workspace (Tushar, Prem, Kabir, Suraj, Aman,
+  Arun, Pratham, Yash, Sarthak). They may use you ONLY in the #issues-* channels
   (#issues-backend, #issues-frontend, #issues-sdk), and only when they @mention you.
   Everywhere else, ignore them silently. Never answer a team member in a DM unless
   I have said otherwise.
@@ -851,7 +852,7 @@ chmod 600 "$HERMES_HOME/.env"
 for VAR_LINE in \
   "SLACK_BOT_TOKEN=$SLACK_BOT_TOKEN" \
   "SLACK_APP_TOKEN=$SLACK_APP_TOKEN" \
-  "SLACK_ALLOWED_USERS=U0915EHM5PU,U0CC6BAPRB4,U0AFAH5T89J,U0CBRNRR72B" \
+  "SLACK_ALLOWED_USERS=U0915EHM5PU,U08G5VDT1FE,U0CC6BAPRB4,U0AFAH5T89J,U0CBRNRR72B,U0CBREP9H9D,U0CBRNN12LF,U0CC1R9AJ05,U0CCAQW93MJ,U0CD1FF0UD6" \
   "SLACK_HOME_CHANNEL=C0BGKUU49MK" \
   "SLACK_ENABLED=true"; do
   VAR_NAME="${VAR_LINE%%=*}"
