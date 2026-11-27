@@ -380,6 +380,18 @@ slack:
 SLACKCONF
 fi
 
+# ---- approvals: only the owner answers approval cards in shared chats (idempotent) ----
+# Without this, approvals.approvers defaults to ["*"] — any admitted member of a Slack channel
+# can answer a dangerous-command approval card there.
+if ! grep -q '^approvals:' "$HERMES_HOME/config.yaml"; then
+  cat >> "$HERMES_HOME/config.yaml" <<'APPCONF'
+
+approvals:
+  approvers:
+    - "U0915EHM5PU"
+APPCONF
+fi
+
 # ---- SOUL.md: persona/system prompt (regenerated when SOUL_VERSION bumps) ----
 if [ ! -f "$HERMES_HOME/SOUL.md" ] || ! grep -q '^# SOUL_VERSION: 10$' "$HERMES_HOME/SOUL.md" 2>/dev/null; then
   cat > "$HERMES_HOME/SOUL.md" <<'SOUL'
